@@ -1,6 +1,6 @@
 {
   "name": "ember-redux-thunk-shim",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "redux-thunk for Ember apps",
   "directories": {
     "doc": "doc",
