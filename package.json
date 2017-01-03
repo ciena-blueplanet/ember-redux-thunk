@@ -1,5 +1,5 @@
 {
-  "name": "ember-redux-thunk",
+  "name": "ember-redux-thunk-shim",
   "version": "0.0.0",
   "description": "redux-thunk for Ember apps",
   "directories": {
@@ -16,14 +16,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ciena-blueplanet/ember-redux-thunk.git"
+    "url": "https://github.com/ember-redux/ember-redux-thunk-shim.git"
   },
-  "homepage": "https://github.com/ciena-blueplanet/ember-redux-thunk",
+  "homepage": "https://github.com/ember-redux/ember-redux-thunk-shim",
   "engines": {
     "node": ">= 5.0.0"
   },
   "bugs": {
-    "url": "https://github.com/ciena-blueplanet/ember-redux-thunk/issues"
+    "url": "https://github.com/ember-redux/ember-redux-thunk-shim/issues"
   },
   "author": "Matthew Dahl (https://github.com/sandersky)",
   "license": "MIT",
