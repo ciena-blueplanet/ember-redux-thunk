@@ -1,3 +1,8 @@
+# 0.0.4
+
+* **Updated** [license](LICENSE) to attribute `ember-redux` instead of `Ciena`.
+
+
 # 0.0.3
 
 * **Updated** Travis config to publish as npm user `ember-redux`.
