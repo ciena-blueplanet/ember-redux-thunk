@@ -1,3 +1,8 @@
+# 0.0.5
+
+* **Removed** `.pullapprove.yml` since PullApprove is not used on this repo.
+
+
 # 0.0.4
 
 * **Updated** [license](LICENSE) to attribute `ember-redux` instead of `Ciena`.
