@@ -1,3 +1,8 @@
+# 0.0.6
+
+* **Fixed** blueprints directory so blueprints will run.
+
+
 # 0.0.5
 
 * **Removed** `.pullapprove.yml` since PullApprove is not used on this repo.
