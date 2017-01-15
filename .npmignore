@@ -7,9 +7,14 @@
 .bowerrc
 .editorconfig
 .ember-cli
+.eslintignore
+.eslintrc
+.github
 .gitignore
 .jshintrc
+.remarkrc
 .watchmanconfig
+.travis
 .travis.yml
 bower.json
 dependency-snapshot.json
