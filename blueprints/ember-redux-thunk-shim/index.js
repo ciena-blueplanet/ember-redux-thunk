@@ -1,7 +1,7 @@
 module.exports = {
   afterInstall: function () {
     return this.addPackagesToProject([
-      {name: 'redux-thunk', target: '2.1.0'}
+      {name: 'redux-thunk', target: '2.2.0'}
     ])
   },
 
