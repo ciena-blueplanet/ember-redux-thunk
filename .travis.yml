@@ -1,17 +1,21 @@
+sudo: required
+dist: trusty
 language: node_js
-sudo: false
 node_js:
-- '5.0'
-- 'stable'
+  - '6.9'
+  - 'stable'
 branches:
   except:
-  - /^v[0-9\.]+/
+    - /^v[0-9\.]+/
 addons:
   apt:
     sources:
-    - ubuntu-toolchain-r-test
+      - google-chrome
+      - ubuntu-toolchain-r-test
     packages:
-    - g++-4.8
+      - google-chrome-stable
+      - g++-4.8
+  firefox: 'latest-esr'
 cache:
   directories:
     - node_modules
@@ -70,7 +74,7 @@ deploy:
     branch: master
     condition: "$EMBER_TRY_SCENARIO = 'default'"
     node: 'stable'
-    tags: false
+    tags: true
 notifications:
   slack:
     secure: JwIqPRHp1oHrQvZn1hdizzKFkP7n1Jl5Fr5xB8dFd0KFN885GZHgHVBBChj11LTlZmcwcGqOv9k2mmg0MTG2oCQDXDt05aQtb5BK6Mfa7k+eRtLk+elou1/GePu0JyHmYXr4D9e70E0tQgOppvAtptE0X7kc3cPqiM6F2AbU5gkYQ/B/LDqmuj95vubJy6Q5+K+EwTjemDzJ10SdbFgbILVnSWU+gC0WVYiaGCW2bqyZR5Xes3JkvOP3wBwVFC9D1fSkxGocrovJQbLuca1NWjwNiA/gSNkewabPuJWP+/IUJLNxC43SnV8lu8YPHcQCaBnShk9H3K+/F5lsDsBXfjTVR3W/+B8mdRRb3QDr93GBLV6lYAmVjkEKORhEX+/BOQnQL9nkaCkNGF8xZ+wwFbUHMF9DgjFTL/6PGO69X8QegG0FtviWEuXPYRVLCMAd5aXey8Vf/Zz4IU9VDHIWxV7E6xcBdWc3A4Ha0MfApb7rCOSz4qr3l60t2qUQKgs2BMuCKRmWZtQEIMYRXjQvN1sLU7Qol2BECABohPUAOXqQP9+lNjKMTbAPGrQAFX/PxLsoGTq0LDNX2BFWe0lwBDx0hsGuaBzKrdWcIRgTY71IJKcnC3qvd+bCnxl1LlDbE+8fsPMwtw2b6noLTG+IEBChRaVc1hHaCMWD642GlDQ=
