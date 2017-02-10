@@ -1,20 +1,25 @@
+sudo: required
+dist: trusty
 language: node_js
-sudo: false
+
 node_js:
-- '5.0'
+- '6.9'
 - 'stable'
-branches:
-  except:
-  - /^v[0-9\.]+/
+
 addons:
   apt:
     sources:
     - ubuntu-toolchain-r-test
+    - google-chrome
     packages:
+    - google-chrome-stable
     - g++-4.8
+  firefox: 'latest-esr'
+
 cache:
   directories:
     - node_modules
+
 env:
   matrix:
   - EMBER_TRY_SCENARIO=ember-1-12
@@ -37,29 +42,29 @@ env:
   global:
     - CXX=g++-4.8
     - secure: aN76pq+/2FW2rvpT10QsBDMUWBpHtdQIrMjiC5HFusz3jzQuH1OvGKg1c6fsF4uyBfZ6WQ3uUFTQjOV+GE+zGzs8NyTHAeOurUQKxqmP1wrBDln0O27lc2+AuAYpCykV3xO7MNg+OkeGjLKZsK/sw7roKpJMfv6vzDMg1JlISyx/1FcPN4xs7COPd2GIxsSNxcG5bw2n8hcATorsgOz5pShXnb/LBgzxy0MPAygbVkQDbXevEgq4UbmLu5JkKK3V4gsnKCNMkPEBvLTPwLSgmnsWeICJPA2o6J2hJt/RN4r8OhaXlBL/UlD6zdd9VueWV9tXgJ58zsd53gEH68UGKYwqO9bRYzmNBV+S2IGTWuxMCkkRacw3yZljmA3w4JRFVAM3jhwPdKDC+QQdHkJeH3MktTET4mnjjX+AN/8b7+TpStzQ1iV//tzeseAbbFroX5D81avR5NCqU4JKZ65I05LIVXR+I524OXV1kzGdwtnK+/jC/sWvU9S4E5mI0WeJgg/FFNsCCEs2QSqbuR4Lz1bFrdnnzmcxGI2DxZUw1RpeoJEXC7RzySH9foteet/WSEaX9GamST6JxFiz+J5SAyamlWMBMoFjxJk5EZGk3mqbAiEkvX35yyWcKKUHJExCrjPevHK6KAMrSaFLlogLRH6sfUSLOzS8zJulMpbWFB8=
+
 matrix:
   fast_finish: true
   allow_failures:
   - env: EMBER_TRY_SCENARIO=ember-beta
   - env: EMBER_TRY_SCENARIO=ember-canary
+
 before_install:
-- npm config set spin false
-- npm install -g coveralls pr-bumper
-- pr-bumper check
-install:
-- npm install
-- bower install
-before_script:
 - "export DISPLAY=:99.0"
 - "sh -e /etc/init.d/xvfb start"
-- sleep 3 # give xvfb some time to start
+- npm config set spin false
+- npm install -g coveralls pr-bumper
+
+install:
+- $(npm root -g)/pr-bumper/.travis/maybe-install.sh
+
 script:
-- npm run lint
-- ember try:one $EMBER_TRY_SCENARIO --- ember test
+- $(npm root -g)/pr-bumper/.travis/maybe-test.sh
+- $(npm root -g)/pr-bumper/.travis/maybe-bump-version.sh
+
 after_success:
-- .travis/publish-coverage.sh
-before_deploy:
-- pr-bumper bump
+- $(npm root -g)/pr-bumper/.travis/maybe-publish-coverage.sh
+
 deploy:
   provider: npm
   email: admin@ember-redux.com
@@ -67,10 +72,11 @@ deploy:
   api_key:
     secure: EFpURL2HfyeDKEed2Mj4i4dQZOEPE7BUNUXBXOYU3nkkHtNRCsW3zsJg2gFHAslMZjjMtXrwHmn+T2ZQpQKqFHHx60cljvKvaErhQq7TjdZPIuB7+rXMUX/Zq+hX9apQ7v4NClDI9KPAC7En28zcP/FMnmNlADLUww6MkelN7GUx3z6CwSNe7cPAhPh/ZV5PYjYI6Pl4RuAb5JMW2kqHDgUK8pI5mhpzAfZC1daaxfZ6yyTHrI3WyPx1amEmNMded5XpP0Bk3fRvK0QNnacPzS06YFREjoqnThtPUrGx75vja47wMeobp/ToXFn/6cRaG35X7EUUegXUX4Cg9omFixxPef4/Z30B74xHRkw9IaJf9kDvylqKz4+MfsZvw/w/LZJwuGOX0CWmbTyoDZ/ychPk+38FyNmd2vXUbI4Ttw9xk5vq8vb86OWygQTKR28Bk3V9sfiy5rwmiPEaDacFoQk8Xn3OM49PgbJSjFYlVLjqdfhk8K9X05QvZllGOOSqImlUCNn0snzMMAX5X0EMd1LoFuEBARKgJKQ8AvO02/hLkbJ7ao4aEP4OemPuWxt4PUes/AKwiYcOWCnKUv5Pyt8D31dOwgsAdZHh41n6QQUzc4SMuXFcrrTysTsWtWsyeT+rEPAz4jRQF0B7FMauZEl7G1SlOGhctJg9vXfkSbU=
   on:
-    branch: master
+    all_branches: true
     condition: "$EMBER_TRY_SCENARIO = 'default'"
     node: 'stable'
-    tags: false
+    tags: true
+
 notifications:
   slack:
     secure: JwIqPRHp1oHrQvZn1hdizzKFkP7n1Jl5Fr5xB8dFd0KFN885GZHgHVBBChj11LTlZmcwcGqOv9k2mmg0MTG2oCQDXDt05aQtb5BK6Mfa7k+eRtLk+elou1/GePu0JyHmYXr4D9e70E0tQgOppvAtptE0X7kc3cPqiM6F2AbU5gkYQ/B/LDqmuj95vubJy6Q5+K+EwTjemDzJ10SdbFgbILVnSWU+gC0WVYiaGCW2bqyZR5Xes3JkvOP3wBwVFC9D1fSkxGocrovJQbLuca1NWjwNiA/gSNkewabPuJWP+/IUJLNxC43SnV8lu8YPHcQCaBnShk9H3K+/F5lsDsBXfjTVR3W/+B8mdRRb3QDr93GBLV6lYAmVjkEKORhEX+/BOQnQL9nkaCkNGF8xZ+wwFbUHMF9DgjFTL/6PGO69X8QegG0FtviWEuXPYRVLCMAd5aXey8Vf/Zz4IU9VDHIWxV7E6xcBdWc3A4Ha0MfApb7rCOSz4qr3l60t2qUQKgs2BMuCKRmWZtQEIMYRXjQvN1sLU7Qol2BECABohPUAOXqQP9+lNjKMTbAPGrQAFX/PxLsoGTq0LDNX2BFWe0lwBDx0hsGuaBzKrdWcIRgTY71IJKcnC3qvd+bCnxl1LlDbE+8fsPMwtw2b6noLTG+IEBChRaVc1hHaCMWD642GlDQ=
