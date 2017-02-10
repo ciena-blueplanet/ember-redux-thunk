@@ -1,3 +1,7 @@
+# 1.1.2
+
+* **Fixed** build to publish.
+
 # 1.1.1
 
 * **Upgraded** to test against Ember 2.11.
