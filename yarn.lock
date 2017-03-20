@@ -748,7 +748,7 @@ broccoli-lint-eslint@^3.2.0:
     json-stable-stringify "^1.0.1"
     md5-hex "^2.0.0"
 
-broccoli-merge-trees@^1.0.0, broccoli-merge-trees@^1.1.1, broccoli-merge-trees@^1.1.3, broccoli-merge-trees@^1.1.4, broccoli-merge-trees@^1.1.5:
+broccoli-merge-trees@^1.0.0, broccoli-merge-trees@^1.1.1, broccoli-merge-trees@^1.1.3, broccoli-merge-trees@^1.1.5:
   version "1.2.4"
   resolved "https://registry.npmjs.org/broccoli-merge-trees/-/broccoli-merge-trees-1.2.4.tgz#a001519bb5067f06589d91afa2942445a2d0fdb5"
   dependencies:
@@ -1684,6 +1684,17 @@ ember-cli-mocha@0.13.2:
     ember-cli-version-checker "^1.1.6"
     ember-mocha "^0.11.0"
     mocha "^2.5.3"
+    resolve "^1.1.7"
+
+ember-cli-node-assets@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.npmjs.org/ember-cli-node-assets/-/ember-cli-node-assets-0.2.0.tgz#5ac52af972f3140adc7f25374d14a067a88937cf"
+  dependencies:
+    broccoli-funnel "^1.0.1"
+    broccoli-merge-trees "^1.1.1"
+    broccoli-source "^1.1.0"
+    debug "^2.2.0"
+    lodash "^4.5.1"
     resolve "^1.1.7"
 
 ember-cli-normalize-entity-name@^1.0.0:
@@ -3725,7 +3736,7 @@ lodash@^3.10.0, lodash@^3.10.1, lodash@^3.9.3:
   version "3.10.1"
   resolved "https://registry.npmjs.org/lodash/-/lodash-3.10.1.tgz#5bf45e8e49ba4189e17d482789dfd15bd140b7b6"
 
-lodash@^4.0.0, lodash@^4.11.1, lodash@^4.2.0, lodash@^4.3.0, lodash@^4.6.1:
+lodash@^4.0.0, lodash@^4.11.1, lodash@^4.2.0, lodash@^4.3.0, lodash@^4.5.1, lodash@^4.6.1:
   version "4.17.4"
   resolved "https://registry.npmjs.org/lodash/-/lodash-4.17.4.tgz#78203a4d1c328ae1d86dca6460e369b57f4055ae"
 
