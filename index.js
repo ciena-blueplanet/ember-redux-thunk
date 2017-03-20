@@ -5,19 +5,17 @@ const path = require('path')
 
 module.exports = {
   name: 'redux-thunk',
-
-  treeForAddon (tree) {
-    const reduxThunkPath = path.dirname(require.resolve('redux-thunk/src/index.js'))
-    let reduxThunkTree = this.treeGenerator(reduxThunkPath)
-
-    if (!tree) {
-      return this._super.treeForAddon.call(this, reduxThunkTree)
+  options: {
+    nodeAssets: {
+      'redux-thunk': {
+        vendor: ['dist/redux-thunk.js']
+      }
     }
-
-    const trees = mergeTrees([reduxThunkTree, tree], {
-      overwrite: true
-    })
-
-    return this._super.treeForAddon.call(this, trees)
-  }
+  },
+  included() {
+    this._super.included.apply(this, arguments);
+    this.import('vendor/redux-thunk/dist/redux-thunk.js', {
+      using: [{ transformation: 'amd', as: 'redux-thunk' }]
+    });
+  },
 }
