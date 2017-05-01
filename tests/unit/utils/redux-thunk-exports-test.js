@@ -1,10 +1,8 @@
-import {expect} from 'chai'
-import {describe, it} from 'mocha'
-
+import { test, module } from 'qunit';
 import ReduxThunk from 'redux-thunk'
 
-describe('redux-thunk', function () {
-  it('exports function', function () {
-    expect(typeof ReduxThunk).to.equal('function')
-  })
-})
+module('redux-thunk');
+
+test('exports function', function(assert) {
+  assert.equal(typeof ReduxThunk, 'function');
+});
