@@ -11,7 +11,13 @@ ember install ember-redux-thunk-shim
 ## Usage
 
 ```js
-import ReduxThunk from 'redux-thunk'
+// app/middleware/index.js
+
+import thunk from 'redux-thunk';
+
+var resolved = thunk.default ? thunk.default : thunk;
+
+export default [resolved];
 ```
 
 To learn more about `redux-thunk` and how to use it visit the [redux-thunk](https://github.com/gaearon/redux-thunk) Github page.
